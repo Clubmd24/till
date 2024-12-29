@@ -1,6 +1,8 @@
 from flask import Flask, render_template_string
-import pandas as pd
+import os
+import pandas as pd  # Ensure pandas is imported
 
+# Create the Flask application instance
 app = Flask(__name__)
 
 # Prepare the data for rendering in the table
@@ -102,5 +104,6 @@ def index():
         html_template, columns=cleaned_data.columns, data=cleaned_data.values
     )
 
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(debug=True, host="0.0.0.0", port=port)
